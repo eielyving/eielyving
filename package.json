@@ -1,6 +1,7 @@
 {
   "name": "your-project-name",
   "version": "1.0.0",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
@@ -19,4 +20,4 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
-} 
+}
