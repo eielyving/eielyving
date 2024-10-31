@@ -1,0 +1,315 @@
+:root {
+    --primary-color: #ffffff;
+    --accent-color: #64ffda;
+    --bg-transparent: rgba(10, 25, 47, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    overflow-x: hidden;
+}
+
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #C62E5D;
+    background: -webkit-linear-gradient(-45deg, 
+        #D81B60,        /* 更饱和的玫红色 */
+        #D81E06,        /* 更饱和的红色 */
+        #D81B60,
+        #D81E06
+    );
+    background: linear-gradient(-45deg, 
+        #D81B60,
+        #D81E06,
+        #D81B60,
+        #D81E06
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    z-index: -2;
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background: var(--bg-transparent);
+    z-index: 1000;
+}
+
+.nav-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-left: 2rem;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.content {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+#home {
+    width: 100%;
+    max-width: 800px;
+}
+
+.main-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease 0.2s forwards;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2) rotate(360deg);
+    color: var(--accent-color);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 1rem 0;
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links a {
+        margin: 1rem 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+.arrow {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-right: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    transform: rotate(45deg);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-webkit-keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 添加头像样式 */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;  /* 头像和文字之间的间距 */
+}
+
+.logo-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+.logo-avatar:hover {
+    transform: scale(1.1);
+}
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* 更新礼花和彩带样式 */
+.confetti {
+    position: fixed;
+    width: 6px;  /* 减小尺寸 */
+    height: 6px;
+    pointer-events: none;
+    opacity: 0.6;  /* 降低不透明度 */
+    z-index: 1000;
+    animation: confettiFloat 4s ease-out forwards;  /* 增加动画时间 */
+    border-radius: 50%;  /* 添加圆角 */
+}
+
+.ribbon {
+    position: fixed;
+    width: 3px;  /* 减小宽度 */
+    height: 15px;  /* 减小长度 */
+    background: linear-gradient(45deg, var(--accent-color), #ff69b4);
+    pointer-events: none;
+    opacity: 0.4;  /* 降低不透明度 */
+    z-index: 1000;
+    animation: ribbonFall var(--fall-duration) ease-in-out forwards;
+}
+
+@keyframes confettiFloat {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: 
+            translate(
+                calc(cos(var(--angle)) * 80px),  /* 减小扩散范围 */
+                calc(sin(var(--angle)) * 80px + 150px)
+            )
+            rotate(540deg);  /* 减少旋转圈数 */
+        opacity: 0;
+    }
+}
+
+@keyframes ribbonFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(80px) rotate(180deg);  /* 减小下落距离 */
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(150px) rotate(360deg);
+        opacity: 0;
+    }
+}
